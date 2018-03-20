@@ -17,7 +17,7 @@ var menos = document.getElementById('menos');
 var mas = document.getElementById('mas');
 var punto = document.getElementById('punto');
 var igual = document.getElementById('igual');
-
+var boton;
 
 on.onclick = function() {
     on.style.height = "60px";
@@ -25,9 +25,9 @@ on.onclick = function() {
 
 }
 sign.onclick = function() {
-    sign.style.height = "60px";
-    sign.style.width = "21%";
-
+    sign.style.height;
+    sign.style.width;
+    clickboton();
 }
 raiz.onclick = function() {
     raiz.style.height = "60px";
@@ -108,3 +108,24 @@ zero.onclick = function() {
     zero.style.height = "60px";
     zero.style.width = "28%";
 }
+
+
+function clickboton(boton) {
+    
+  var alto = 63;
+  var ancho = 21;
+  var id = setInterval(timerclick, 2000);
+  function timerclick() {
+    if (alto == 60) {
+      boton.style.width = "21%"; 
+      boton.style.height = "62.91px";
+      clearInterval(id);
+    } else {
+      alto--; 
+      ancho = ancho - 0.5;
+      boton.style.height = alto + 'px'; 
+      boton.style.width = ancho + '%'; 
+    }
+  }
+}
+
