@@ -20,8 +20,8 @@ var igual = document.getElementById('igual');
 var boton;
 
 on.onclick = function() {
-    on.style.height = "60px";
-    on.style.width = "21%";
+    boton=on;
+    clickboton();
 
 }
 sign.onclick = function() {
@@ -29,23 +29,23 @@ sign.onclick = function() {
     clickboton();
 }
 raiz.onclick = function() {
-    raiz.style.height = "60px";
-    raiz.style.width = "21%";
+    boton=raiz;
+    clickboton();
 
 }
 dividido.onclick = function() {
-    dividido.style.height = "60px";
-    dividido.style.width = "21%";
+    boton=dividido;
+    clickboton();
 
 }
 por.onclick = function() {
-    por.style.height = "60px";
-    por.style.width = "21%";
+    boton=por;
+    clickboton();
 
 }
 menos.onclick = function() {
-    menos.style.height = "60px";
-    menos.style.width = "21%";
+    boton=menos;
+    clickboton();
 
 }
 mas.onclick = function() {
@@ -77,30 +77,30 @@ tres.onclick = function() {
 
 }
 cuatro.onclick = function() {
-    cuatro.style.height = "60px";
-    cuatro.style.width = "21%";
+    boton=cuatro;
+    clickboton();
 }
 cinco.onclick = function() {
-    cinco.style.height = "60px";
-    cinco.style.width = "21%";  
+    boton=cinco;
+    clickboton(); 
 }
 seis.onclick = function() {
-    seis.style.height = "60px";
-    seis.style.width = "21%";
+    boton=seis;
+    clickboton();
 }
 siete.onclick = function() {
-    siete.style.height = "60px";
-    siete.style.width = "21%";
+    boton=siete;
+    clickboton();
 
 }
 ocho.onclick = function() {nueve
-    ocho.style.height = "60px";
-    ocho.style.width = "21%";
+    boton=ocho;
+    clickboton();
 
 }
 nueve.onclick = function() {
-    nueve.style.height = "60px";
-    nueve.style.width = "21%";
+    boton=nueve;
+    clickboton();
 
 }
 zero.onclick = function() {
