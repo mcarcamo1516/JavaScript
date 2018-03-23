@@ -25,6 +25,7 @@ var valordisplay = 0;
 var valortemp = 0;
 var contador = 0;
 var decimal = false;
+var negativo  = false;
 
 
 
@@ -215,6 +216,9 @@ function mostrardisplay(){
     if(contador < 8)
     {
         valordisplay = valordisplay*10;
+        if(negativo){
+            valortemp = valortemp * -1
+        }
         valordisplay = valordisplay + valortemp;
         pantalla.innerHTML  = valordisplay;
         contador = contador + 1;
@@ -227,4 +231,11 @@ function cambiosigno()
 {
     valordisplay =  valordisplay * -1; 
     pantalla.innerHTML  = valordisplay;
+    if(valordisplay < 0){
+        negativo = true;
+    }
+    else{
+        negativo = false;
+    }
+       
 }
