@@ -25,8 +25,7 @@ on.onclick = function() {
 
 }
 sign.onclick = function() {
-    sign.style.height;
-    sign.style.width;
+    boton=sign;
     clickboton();
 }
 raiz.onclick = function() {
@@ -110,22 +109,17 @@ zero.onclick = function() {
 }
 
 
-function clickboton(boton) {
+function clickboton() {
+        boton.style.height = "60px";
+        boton.style.width = "20%";
+        setTimeout(restaurarbtn, 400);
     
-  var alto = 63;
-  var ancho = 21;
-  var id = setInterval(timerclick, 2000);
-  function timerclick() {
-    if (alto == 60) {
-      boton.style.width = "21%"; 
-      boton.style.height = "62.91px";
-      clearInterval(id);
-    } else {
-      alto--; 
-      ancho = ancho - 0.5;
-      boton.style.height = alto + 'px'; 
-      boton.style.width = ancho + '%'; 
+        function restaurarbtn() 
+    {
+        boton.style.width = "21%"; 
+        boton.style.height = "62.91px";
     }
-  }
+
+
 }
 
