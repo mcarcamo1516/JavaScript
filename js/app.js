@@ -1,3 +1,4 @@
+/*variables principales*/
 var on = document.getElementById('on');
 var sign = document.getElementById('sign');
 var raiz = document.getElementById('raiz');
@@ -17,109 +18,213 @@ var menos = document.getElementById('menos');
 var mas = document.getElementById('mas');
 var punto = document.getElementById('punto');
 var igual = document.getElementById('igual');
+var pantalla = document.getElementById('display');
 var boton;
+var tipo = 0;
+var valordisplay = 0;
+var valortemp = 0;
+var contador = 0;
+var decimal = false;
 
+
+
+/*fin de variables*/
+
+/* presion de botones de teclado */
 on.onclick = function() {
     boton=on;
+    tipo = 1;
     clickboton();
 
 }
 sign.onclick = function() {
     boton=sign;
+    tipo = 1;
     clickboton();
+    cambiosigno();
 }
 raiz.onclick = function() {
     boton=raiz;
+    tipo = 1;
     clickboton();
 
 }
 dividido.onclick = function() {
     boton=dividido;
+    tipo = 1;
     clickboton();
 
 }
 por.onclick = function() {
     boton=por;
+    tipo = 1;
     clickboton();
 
 }
 menos.onclick = function() {
     boton=menos;
+    tipo = 1;
     clickboton();
 
 }
 mas.onclick = function() {
-    mas.style.height = "130px";
+    tipo = 3;
+    boton=mas;
+    clickboton();
     
-
 }
 punto.onclick = function() {
-    punto.style.height = "60px";
-    punto.style.width = "28%";
+    tipo = 2;
+    boton=punto;
+    clickboton();
+    decimal = true;
 
 }
 igual.onclick = function() {
-    igual.style.height = "60px";
-    igual.style.width = "28%";
+    tipo = 2;
+    boton=igual;
+    clickboton();
 
 }
 uno.onclick = function() {
-    uno.style.height = "60px";
-    uno.style.width = "28%";
+    tipo = 2;
+    boton=uno;
+    valortemp = 1;
+    clickboton();
+    mostrardisplay();
+    
+    //mostrardisplay();
 }
 dos.onclick = function() {
-    dos.style.height = "60px";
-   dos.style.width = "28%";
+    tipo = 2;
+    boton=dos;
+    clickboton();
+    valortemp = 2;
+    mostrardisplay();
 }
 tres.onclick = function() {
-    tres.style.height = "60px";
-    tres.style.width = "28%";
+    tipo = 2;
+    boton=tres;
+    clickboton();
+    valortemp = 3;
+    mostrardisplay();
 
 }
 cuatro.onclick = function() {
     boton=cuatro;
+    tipo = 1;
     clickboton();
+    valortemp = 4;
+    mostrardisplay();
 }
 cinco.onclick = function() {
     boton=cinco;
+    tipo = 1;
     clickboton(); 
+    valortemp = 5;
+    mostrardisplay();
 }
 seis.onclick = function() {
     boton=seis;
+    tipo = 1;
     clickboton();
+    valortemp = 6;
+    mostrardisplay();
 }
 siete.onclick = function() {
     boton=siete;
+    tipo = 1;
     clickboton();
+    valortemp = 7;
+    mostrardisplay();
 
 }
 ocho.onclick = function() {nueve
     boton=ocho;
+    tipo = 1;
     clickboton();
+    valortemp = 8;
+    mostrardisplay();
 
 }
 nueve.onclick = function() {
     boton=nueve;
+    tipo = 1;
     clickboton();
+    valortemp = 9;
+    mostrardisplay();
 
 }
 zero.onclick = function() {
-    zero.style.height = "60px";
-    zero.style.width = "28%";
+    boton=zero;
+    tipo = 2;
+    clickboton();
+    if(valordisplay !== 0)
+    {
+        valortemp = 0;
+        mostrardisplay();  
+    }
+    
+
 }
+/* fin de teclado*/
 
-
+/*animacion de teclado*/
 function clickboton() {
-        boton.style.height = "55px";
+    if(tipo === 1){
+        boton.style.height = "58px";
         boton.style.width = "20%";
         setTimeout(restaurarbtn, 100);
+    }
+    else if(tipo === 2){
+        boton.style.height = "58px";
+        boton.style.width = "27%";
+        setTimeout(restaurarbtn1, 100);
+    }
+    else if(tipo === 3)
+    {
+            
+            boton.style.width = "70px";
+            setTimeout(restaurarbtn2, 100);
+    }
+
     
         function restaurarbtn() 
     {
-        boton.style.width = "22%"; 
-        boton.style.height = "62.91px";
+            boton.style.width = "22%"; 
+            boton.style.height = "62.91px";        
+
     }
+        function restaurarbtn1() 
+    {
+            boton.style.width = "29%"; 
+            boton.style.height = "62.91px";      
 
-
+    }
+        function restaurarbtn2()
+    {
+        
+        boton.style.width = "79px";
+    }
+    tipo=0;
+    return;
+}
+/*fin de animacion*/
+/* visualizador de numeros digitados*/
+function mostrardisplay(){
+    if(contador < 8)
+    {
+        valordisplay = valordisplay*10;
+        valordisplay = valordisplay + valortemp;
+        pantalla.innerHTML  = valordisplay;
+        contador = contador + 1;
+    }
+    
+    
 }
 
+function cambiosigno()
+{
+    valordisplay =  valordisplay * -1; 
+    pantalla.innerHTML  = valordisplay;
+}
