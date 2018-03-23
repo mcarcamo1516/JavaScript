@@ -110,13 +110,13 @@ zero.onclick = function() {
 
 
 function clickboton() {
-        boton.style.height = "60px";
+        boton.style.height = "55px";
         boton.style.width = "20%";
         setTimeout(restaurarbtn, 100);
     
         function restaurarbtn() 
     {
-        boton.style.width = "21%"; 
+        boton.style.width = "22%"; 
         boton.style.height = "62.91px";
     }
 
