@@ -228,8 +228,7 @@ function mostrardisplay(){
     
 }
 
-function cambiosigno()
-{
+function cambiosigno(){
     valordisplay =  valordisplay * -1; 
     pantalla.innerHTML  = valordisplay;
     if(valordisplay < 0){
