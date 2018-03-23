@@ -36,6 +36,7 @@ on.onclick = function() {
     boton=on;
     tipo = 1;
     clickboton();
+    limpiar();
 
 }
 sign.onclick = function() {
@@ -238,4 +239,13 @@ function cambiosigno()
         negativo = false;
     }
        
+}
+function limpiar(){
+    tipo = 0;
+    valordisplay = 0;
+    valortemp = 0;
+    contador = 0;
+    decimal = false;
+    negativo  = false;
+    pantalla.innerHTML  = valordisplay;
 }
