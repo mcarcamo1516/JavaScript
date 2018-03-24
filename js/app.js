@@ -278,7 +278,7 @@ function limpiar(){
     valordisplay = 0;
     valortemp = 0;
     contador = 0;
-    decimal = false;
+    calculadora.decimal = false;
     negativo  = false;
     pantalla.innerHTML  = valordisplay;
 }
