@@ -24,10 +24,42 @@ var tipo = 0;
 var valordisplay = 0;
 var valortemp = 0;
 var contador = 0;
-var decimal = false;
 var negativo  = false;
 
-
+var calculadora = {
+        operacion   : 0,
+        total       : 0,
+        temporal    : 0,
+        totaltemp   : 0,
+        decimal     :false,
+    
+    resultado:function(){
+        switch(this.operacion){
+            case 1:
+                this.total = this.temporal + this.totaltemp + this.total;
+                this.totaltemp = 0;
+                break;
+            case 2:
+                this.total = this.total + this.totaltemp - this.temporal;
+                this.totaltemp = 0;
+                break;
+            case 3:
+                this.total = this.total + this.totaltemp;
+                this.total = this.total * this.temporal;
+                this.totaltemp = 0;
+                break;
+            case 4:
+                this.total = this.total + this.totaltemp;
+                this.total = this.total / this.temporal;
+                this.totaltemp = 0;
+                break;
+        }
+        return this.total;
+    },
+    suma:function(){
+        
+    }
+};
 
 /*fin de variables*/
 
@@ -72,6 +104,8 @@ menos.onclick = function() {
 mas.onclick = function() {
     tipo = 3;
     boton=mas;
+    calculadora.temporal = valordisplay;
+    valordisplay = 0;
     clickboton();
     
 }
@@ -79,7 +113,7 @@ punto.onclick = function() {
     tipo = 2;
     boton=punto;
     clickboton();
-    decimal = true;
+    calculadora.decimal = true;
 
 }
 igual.onclick = function() {
