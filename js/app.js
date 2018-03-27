@@ -77,12 +77,14 @@ sign.onclick = function() {
     clickboton();
     cambiosigno();
 }
+
 raiz.onclick = function() {
     boton=raiz;
     tipo = 1;
     clickboton();
 
 }
+
 dividido.onclick = function() {
     boton=dividido;
     tipo = 1;
@@ -109,6 +111,7 @@ mas.onclick = function() {
     clickboton();
     
 }
+
 punto.onclick = function() {
     tipo = 2;
     boton=punto;
@@ -122,6 +125,7 @@ igual.onclick = function() {
     clickboton();
 
 }
+
 uno.onclick = function() {
     tipo = 2;
     boton=uno;
