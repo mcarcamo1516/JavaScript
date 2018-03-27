@@ -32,6 +32,8 @@ var calculadora = {
         temporal    : 0,
         totaltemp   : 0,
         decimal     :false,
+        decimaltemp :0.1,
+        decimalcant :0,
     
     resultado:function(){
         switch(this.operacion){
@@ -123,6 +125,7 @@ igual.onclick = function() {
     tipo = 2;
     boton=igual;
     clickboton();
+    calculadora.resultado();
 
 }
 
@@ -254,12 +257,28 @@ function clickboton() {
 function mostrardisplay(){
     if(contador < 8)
     {
-        valordisplay = valordisplay*10;
         if(negativo){
             valortemp = valortemp * -1
         }
+        
+        if (calculadora.decimal){
+            if(valordisplay == 0){
+                contador = contador + 1;
+            }
+            valortemp= valortemp * calculadora.decimaltemp;
+            calculadora.decimaltemp = calculadora.decimaltemp * 0.1;
+            calculadora.decimalcant = calculadora.decimalcant + 1;
+            
+        }
+        else{
+            valordisplay = valordisplay * 10;
+
+
+        }
+
+
         valordisplay = valordisplay + valortemp;
-        pantalla.innerHTML  = valordisplay;
+        pantalla.innerHTML  = valordisplay.toFixed(calculadora.decimalcant);
         contador = contador + 1;
     }
     
@@ -284,5 +303,8 @@ function limpiar(){
     contador = 0;
     calculadora.decimal = false;
     negativo  = false;
+    calculadora.decimaltemp = 0.1;
+    calculadora.decimal= false;
+    calculadora.decimalcant = 0;
     pantalla.innerHTML  = valordisplay;
 }
