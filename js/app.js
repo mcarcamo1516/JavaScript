@@ -41,6 +41,7 @@ var calculadora = {
             case 1:
                 this.total = this.temporal + this.totaltemp + this.total;
                 this.totaltemp = 0;
+                this.valordisplay = 0;
                 break;
             case 2:
                 this.total = this.total + this.totaltemp - this.temporal;
@@ -50,13 +51,16 @@ var calculadora = {
                 this.total = this.total + this.totaltemp;
                 this.total = this.total * this.temporal;
                 this.totaltemp = 0;
+                this.valordisplay = 0;
                 break;
             case 4:
                 this.total = this.total + this.totaltemp;
                 this.total = this.total / this.temporal;
                 this.totaltemp = 0;
+                this.valordisplay = 0;
                 break;
         }
+        
         pantalla.innerHTML =this.total;
         return;
     },
@@ -115,7 +119,6 @@ mas.onclick = function() {
     calculadora.tipo = 3;
     calculadora.boton=mas;
     calculadora.totaltemp = calculadora.totaltemp + calculadora.valordisplay;
-    calculadora.temporal=0;
     calculadora.valordisplay = 0;
     calculadora.operacion = 1;
     clickboton();
