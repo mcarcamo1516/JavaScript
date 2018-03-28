@@ -19,12 +19,7 @@ var mas = document.getElementById('mas');
 var punto = document.getElementById('punto');
 var igual = document.getElementById('igual');
 var pantalla = document.getElementById('display');
-var boton;
-var tipo = 0;
-var valordisplay = 0;
-var valortemp = 0;
-var contador = 0;
-var negativo  = false;
+
 
 var calculadora = {
         operacion   : 0,
@@ -34,6 +29,12 @@ var calculadora = {
         decimal     :false,
         decimaltemp :0.1,
         decimalcant :0,
+        boton: 0,
+        tipo : 0,
+        valordisplay : 0,
+        valortemp : 0,
+        contador : 0,
+        negativo  :false,
     
     resultado:function(){
         switch(this.operacion){
@@ -67,144 +68,144 @@ var calculadora = {
 
 /* presion de botones de teclado */
 on.onclick = function() {
-    boton=on;
-    tipo = 1;
+    calculadora.boton = on;
+    calculadora.tipo = 1;
     clickboton();
     limpiar();
 
 }
 sign.onclick = function() {
-    boton=sign;
-    tipo = 1;
+    calculadora.boton=sign;
+    calculadora.tipo =1;
     clickboton();
     cambiosigno();
 }
 
 raiz.onclick = function() {
-    boton=raiz;
-    tipo = 1;
+    calculadora.boton=raiz;
+    calculadora.tipo = 1;
     clickboton();
 
 }
 
 dividido.onclick = function() {
-    boton=dividido;
-    tipo = 1;
+    calculadora.boton=dividido;
+    calculadora.tipo = 1;
     clickboton();
 
 }
 por.onclick = function() {
-    boton=por;
-    tipo = 1;
+    calculadora.boton=por;
+    calculadora.tipo = 1;
     clickboton();
 
 }
 menos.onclick = function() {
-    boton=menos;
-    tipo = 1;
+    calculadora.boton=menos;
+    calculadora.tipo = 1;
     clickboton();
 
 }
 mas.onclick = function() {
-    tipo = 3;
-    boton=mas;
-    calculadora.temporal = valordisplay;
-    valordisplay = 0;
+    calculadora.tipo = 3;
+    calculadora.boton=mas;
+    calculadora.temporal = calculadora.valordisplay;
+    calculadora.valordisplay = 0;
     clickboton();
     
 }
 
 punto.onclick = function() {
-    tipo = 2;
-    boton=punto;
+    calculadora.tipo = 2;
+    calculadora.boton=punto;
     clickboton();
     calculadora.decimal = true;
 
 }
 igual.onclick = function() {
-    tipo = 2;
-    boton=igual;
+    calculadora.tipo = 2;
+    calculadora.boton=igual;
     clickboton();
     calculadora.resultado();
 
 }
 
 uno.onclick = function() {
-    tipo = 2;
-    boton=uno;
-    valortemp = 1;
+    calculadora.tipo = 2;
+    calculadora.boton=uno;
+    calculadora.valortemp = 1;
     clickboton();
     mostrardisplay();
     
     //mostrardisplay();
 }
 dos.onclick = function() {
-    tipo = 2;
-    boton=dos;
+    calculadora.tipo = 2;
+    calculadora.boton=dos;
     clickboton();
-    valortemp = 2;
+    calculadora.valortemp = 2;
     mostrardisplay();
 }
 tres.onclick = function() {
-    tipo = 2;
-    boton=tres;
+    calculadora.tipo = 2;
+    calculadora.boton=tres;
     clickboton();
-    valortemp = 3;
+    calculadora.valortemp = 3;
     mostrardisplay();
 
 }
 cuatro.onclick = function() {
-    boton=cuatro;
-    tipo = 1;
+    calculadora.boton=cuatro;
+    calculadora.tipo = 1;
     clickboton();
-    valortemp = 4;
+    calculadora.valortemp = 4;
     mostrardisplay();
 }
 cinco.onclick = function() {
-    boton=cinco;
-    tipo = 1;
+    calculadora.boton=cinco;
+    calculadora.tipo = 1;
     clickboton(); 
-    valortemp = 5;
+    calculadora.valortemp = 5;
     mostrardisplay();
 }
 seis.onclick = function() {
-    boton=seis;
-    tipo = 1;
+    calculadora.boton=seis;
+    calculadora.tipo = 1;
     clickboton();
-    valortemp = 6;
+    calculadora.valortemp = 6;
     mostrardisplay();
 }
 siete.onclick = function() {
-    boton=siete;
-    tipo = 1;
+    calculadora.boton=siete;
+    calculadora.tipo = 1;
     clickboton();
-    valortemp = 7;
+    calculadora.valortemp = 7;
     mostrardisplay();
 
 }
 ocho.onclick = function() {nueve
-    boton=ocho;
-    tipo = 1;
+    calculadora.boton=ocho;
+    calculadora.tipo = 1;
     clickboton();
-    valortemp = 8;
+    calculadora.valortemp = 8;
     mostrardisplay();
 
 }
 nueve.onclick = function() {
-    boton=nueve;
-    tipo = 1;
+    calculadora.boton=nueve;
+    calculadora.tipo = 1;
     clickboton();
-    valortemp = 9;
+    calculadora.valortemp = 9;
     mostrardisplay();
 
 }
 zero.onclick = function() {
-    boton=zero;
-    tipo = 2;
+    calculadora.boton=zero;
+    calculadora.tipo = 2;
     clickboton();
-    if(valordisplay !== 0)
+    if(calculadora.valordisplay !== 0)
     {
-        valortemp = 0;
+        calculadora.valortemp = 0;
         mostrardisplay();  
     }
     
@@ -214,97 +215,97 @@ zero.onclick = function() {
 
 /*animacion de teclado*/
 function clickboton() {
-    if(tipo === 1){
-        boton.style.height = "58px";
-        boton.style.width = "20%";
+    if(calculadora.tipo === 1){
+        calculadora.boton.style.height = "58px";
+        calculadora.boton.style.width = "20%";
         setTimeout(restaurarbtn, 100);
     }
-    else if(tipo === 2){
-        boton.style.height = "58px";
-        boton.style.width = "27%";
+    else if(calculadora.tipo === 2){
+        calculadora.boton.style.height = "58px";
+        calculadora.boton.style.width = "27%";
         setTimeout(restaurarbtn1, 100);
     }
-    else if(tipo === 3)
+    else if(calculadora.tipo === 3)
     {
             
-            boton.style.width = "70px";
+            calculadora.boton.style.width = "70px";
             setTimeout(restaurarbtn2, 100);
     }
 
     
         function restaurarbtn() 
     {
-            boton.style.width = "22%"; 
-            boton.style.height = "62.91px";        
+            calculadora.boton.style.width = "22%"; 
+            calculadora.boton.style.height = "62.91px";        
 
     }
         function restaurarbtn1() 
     {
-            boton.style.width = "29%"; 
-            boton.style.height = "62.91px";      
+            calculadora.boton.style.width = "29%"; 
+            calculadora.boton.style.height = "62.91px";      
 
     }
         function restaurarbtn2()
     {
         
-        boton.style.width = "79px";
+        calculadora.boton.style.width = "79px";
     }
-    tipo=0;
+    calculadora.tipo=0;
     return;
 }
 /*fin de animacion*/
 /* visualizador de numeros digitados*/
 function mostrardisplay(){
-    if(contador < 8)
+    if(calculadora.contador < 8)
     {
-        if(negativo){
-            valortemp = valortemp * -1
+        if(calculadora.negativo){
+            calculadora.valortemp = calculadora.valortemp * -1
         }
         
         if (calculadora.decimal){
-            if(valordisplay == 0){
-                contador = contador + 1;
+            if(calculadora.valordisplay == 0){
+                calculadora.contador = calculadora.contador + 1;
             }
-            valortemp= valortemp * calculadora.decimaltemp;
+            calculadora.valortemp= calculadora.valortemp * calculadora.decimaltemp;
             calculadora.decimaltemp = calculadora.decimaltemp * 0.1;
             calculadora.decimalcant = calculadora.decimalcant + 1;
             
         }
         else{
-            valordisplay = valordisplay * 10;
+            calculadora.valordisplay = calculadora.valordisplay * 10;
 
 
         }
 
 
-        valordisplay = valordisplay + valortemp;
-        pantalla.innerHTML  = valordisplay.toFixed(calculadora.decimalcant);
-        contador = contador + 1;
+        calculadora.valordisplay = calculadora.valordisplay + calculadora.valortemp;
+        pantalla.innerHTML  = calculadora.valordisplay.toFixed(calculadora.decimalcant);
+        calculadora.contador = calculadora.contador + 1;
     }
     
     
 }
 
 function cambiosigno(){
-    valordisplay =  valordisplay * -1; 
-    pantalla.innerHTML  = valordisplay;
-    if(valordisplay < 0){
-        negativo = true;
+    calculadora.valordisplay =  calculadora.valordisplay * -1; 
+    pantalla.innerHTML  = calculadora.valordisplay;
+    if(calculadora.valordisplay < 0){
+        calculadora.negativo = true;
     }
     else{
-        negativo = false;
+        calculadora.negativo = false;
     }
        
 }
 function limpiar(){
-    tipo = 0;
-    valordisplay = 0;
-    valortemp = 0;
-    contador = 0;
+    calculadora.tipo = 0;
+    calculadora.valordisplay = 0;
+    calculadora.valortemp = 0;
+    calculadora.contador = 0;
     calculadora.decimal = false;
-    negativo  = false;
+    calculadora.negativo  = false;
     calculadora.decimaltemp = 0.1;
     calculadora.decimal= false;
     calculadora.decimalcant = 0;
-    pantalla.innerHTML  = valordisplay;
+    pantalla.innerHTML  = calculadora.valordisplay;
 }
