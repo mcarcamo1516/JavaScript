@@ -57,11 +57,10 @@ var calculadora = {
                 this.totaltemp = 0;
                 break;
         }
-        return this.total;
+        pantalla.innerHTML =this.total;
+        return;
     },
-    suma:function(){
-        
-    }
+
 };
 
 /*fin de variables*/
@@ -92,26 +91,37 @@ dividido.onclick = function() {
     calculadora.boton=dividido;
     calculadora.tipo = 1;
     clickboton();
+    calculadora.decimaltemp = 0.1;
+    calculadora.decimal= false;
 
 }
 por.onclick = function() {
     calculadora.boton=por;
     calculadora.tipo = 1;
     clickboton();
+    calculadora.decimaltemp = 0.1;
+    calculadora.decimal= false;
 
 }
 menos.onclick = function() {
     calculadora.boton=menos;
     calculadora.tipo = 1;
     clickboton();
+    calculadora.decimaltemp = 0.1;
+    calculadora.decimal= false;
 
 }
 mas.onclick = function() {
     calculadora.tipo = 3;
     calculadora.boton=mas;
-    calculadora.temporal = calculadora.valordisplay;
+    calculadora.totaltemp = calculadora.totaltemp + calculadora.valordisplay;
+    calculadora.temporal=0;
     calculadora.valordisplay = 0;
+    calculadora.operacion = 1;
     clickboton();
+    calculadora.decimaltemp = 0.1;
+    calculadora.decimal= false;
+    calculadora.decimalcant = 0;
     
 }
 
@@ -125,6 +135,7 @@ punto.onclick = function() {
 igual.onclick = function() {
     calculadora.tipo = 2;
     calculadora.boton=igual;
+    calculadora.temporal=calculadora.valordisplay;
     clickboton();
     calculadora.resultado();
 
@@ -301,6 +312,9 @@ function limpiar(){
     calculadora.tipo = 0;
     calculadora.valordisplay = 0;
     calculadora.valortemp = 0;
+    calculadora.total = 0;
+    calculadora.totaltemp= 0;
+    calculadora.temporal =0;
     calculadora.contador = 0;
     calculadora.decimal = false;
     calculadora.negativo  = false;
