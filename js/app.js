@@ -42,7 +42,7 @@ var calculadora = {
             case 1:
                 this.total = this.temporal + this.totaltemp + this.total;
                 this.totaltemp = 0;
-                this.valordisplay = 0;
+                
                 break;
             case 2:
                 this.total = this.total + this.totaltemp - this.temporal;
@@ -52,13 +52,13 @@ var calculadora = {
                 this.total = this.total + this.totaltemp;
                 this.total = this.total * this.temporal;
                 this.totaltemp = 0;
-                this.valordisplay = 0;
+                
                 break;
             case 4:
                 this.total = this.total + this.totaltemp;
                 this.total = this.total / this.temporal;
                 this.totaltemp = 0;
-                this.valordisplay = 0;
+                
                 break;
         }
         
@@ -217,6 +217,7 @@ calculadora.mas.onclick = function() {
     if (calculadora.operacion == 0){
         calculadora.totaltemp = calculadora.valordisplay;
     }else{
+        calculadora.temporal = calculadora.valordisplay;
         calculadora.resultado();
     }
     calculadora.valordisplay = 0;
@@ -238,7 +239,7 @@ calculadora.punto.onclick = function() {
 calculadora.igual.onclick = function() {
     calculadora.tipo = 2;
     calculadora.boton=calculadora.igual; 
-    calculadora.temporal=calculadora.temporal + calculadora.valordisplay;
+    calculadora.temporal= calculadora.valordisplay;
     calculadora.clickboton();
     calculadora.resultado();
 
