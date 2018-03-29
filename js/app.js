@@ -1,8 +1,5 @@
 /*variables principales*/
 
-
-
-
 var calculadora = {
         on : document.getElementById('on'),
         sign : document.getElementById('sign'),
@@ -81,6 +78,7 @@ var calculadora = {
         this.decimaltemp = 0.1;
         this.decimal= false;
         this.decimalcant = 0;
+        this.operacion = 0;
         this.pantalla.innerHTML  = this.valordisplay;
     },
     cambiosigno:function(){
@@ -155,8 +153,6 @@ var calculadora = {
 calculadora.on.onclick = function() {
   calculadora.onboton();
 }
-
-
 calculadora.sign.onclick = function() {
     calculadora.signboton();
 }
@@ -171,6 +167,13 @@ calculadora.raiz.onclick = function() {
 calculadora.dividido.onclick = function() {
     calculadora.boton=calculadora.dividido;
     calculadora.tipo = 1;
+    if (calculadora.operacion == 0){
+        calculadora.totaltemp = calculadora.valordisplay;
+    }else{
+        calculadora.resultado();
+    }
+    calculadora.valordisplay = 0;
+    calculadora.operacion = 4;
     calculadora.clickboton();
     calculadora.decimaltemp = 0.1;
     calculadora.decimal= false;
@@ -179,6 +182,13 @@ calculadora.dividido.onclick = function() {
 calculadora.por.onclick = function() {
     calculadora.boton=calculadora.por;
     calculadora.tipo = 1;
+        if (calculadora.operacion == 0){
+        calculadora.totaltemp = calculadora.valordisplay;
+    }else{
+        calculadora.resultado();
+    }
+    calculadora.valordisplay = 0;
+    calculadora.operacion = 3;
     calculadora.clickboton();
     calculadora.decimaltemp = 0.1;
     calculadora.decimal= false;
@@ -188,6 +198,14 @@ calculadora.menos.onclick = function() {
     calculadora.boton=calculadora.menos;
     calculadora.tipo = 1;
     calculadora.clickboton();
+    if (calculadora.operacion === 0){
+        calculadora.totaltemp = calculadora.valordisplay;
+    }else{
+        calculadora.resultado();
+    }
+    
+    calculadora.valordisplay = 0;
+    calculadora.operacion = 2;
     calculadora.decimaltemp = 0.1;
     calculadora.decimal= false;
 
@@ -196,7 +214,11 @@ calculadora.mas.onclick = function() {
     
     calculadora.tipo = 3;
     calculadora.boton=calculadora.mas;
-    calculadora.totaltemp = calculadora.totaltemp + calculadora.valordisplay;
+    if (calculadora.operacion == 0){
+        calculadora.totaltemp = calculadora.valordisplay;
+    }else{
+        calculadora.resultado();
+    }
     calculadora.valordisplay = 0;
     calculadora.operacion = 1;
     calculadora.clickboton();
@@ -204,7 +226,7 @@ calculadora.mas.onclick = function() {
     calculadora.decimal= false;
     calculadora.decimalcant = 0;
     
-}
+ }
 
 calculadora.punto.onclick = function() {
     calculadora.tipo = 2;
@@ -215,8 +237,8 @@ calculadora.punto.onclick = function() {
 }
 calculadora.igual.onclick = function() {
     calculadora.tipo = 2;
-    calculadora.boton=calculadora.igual;
-    calculadora.temporal=calculadora.valordisplay;
+    calculadora.boton=calculadora.igual; 
+    calculadora.temporal=calculadora.temporal + calculadora.valordisplay;
     calculadora.clickboton();
     calculadora.resultado();
 
