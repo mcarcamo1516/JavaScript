@@ -36,6 +36,7 @@ var calculadora = {
         valortemp : 0,
         contador : 0,
         negativo  :false,
+        igualnp : true,
     
     resultado:function(){
         switch(this.operacion){
@@ -79,6 +80,7 @@ var calculadora = {
         this.decimal= false;
         this.decimalcant = 0;
         this.operacion = 0;
+        this.igualnp =true;
         this.pantalla.innerHTML  = this.valordisplay;
     },
     cambiosigno:function(){
@@ -170,7 +172,9 @@ calculadora.dividido.onclick = function() {
     if (calculadora.operacion == 0){
         calculadora.totaltemp = calculadora.valordisplay;
     }else{
-        calculadora.resultado();
+        if(calculadora.igualnp){
+          calculadora.resultado();  
+        }
     }
     calculadora.valordisplay = 0;
     calculadora.operacion = 4;
@@ -185,7 +189,9 @@ calculadora.por.onclick = function() {
         if (calculadora.operacion == 0){
         calculadora.totaltemp = calculadora.valordisplay;
     }else{
-        calculadora.resultado();
+        if(calculadora.igualnp){
+          calculadora.resultado();  
+        }
     }
     calculadora.valordisplay = 0;
     calculadora.operacion = 3;
@@ -201,7 +207,9 @@ calculadora.menos.onclick = function() {
     if (calculadora.operacion === 0){
         calculadora.totaltemp = calculadora.valordisplay;
     }else{
-        calculadora.resultado();
+        if(calculadora.igualnp){
+          calculadora.resultado();  
+        }
     }
     
     calculadora.valordisplay = 0;
@@ -218,7 +226,10 @@ calculadora.mas.onclick = function() {
         calculadora.totaltemp = calculadora.valordisplay;
     }else{
         calculadora.temporal = calculadora.valordisplay;
-        calculadora.resultado();
+        if(calculadora.igualnp){
+          calculadora.resultado();  
+        }
+        
     }
     calculadora.valordisplay = 0;
     calculadora.operacion = 1;
@@ -242,6 +253,7 @@ calculadora.igual.onclick = function() {
     calculadora.temporal= calculadora.valordisplay;
     calculadora.clickboton();
     calculadora.resultado();
+    calculadora.igualnp = false;
 
 }
 
