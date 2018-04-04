@@ -37,8 +37,14 @@ var calculadora = {
         contador : 0,
         negativo  :false,
         igualnp : true,
+        vali : 0,
+        valii :0,
+        valstg :"",
+        valvec :[],
+        valmost : "",
     
     resultado:function(){
+
         switch(this.operacion){
             case 1:
                 this.total = this.temporal + this.totaltemp + this.total;
@@ -63,7 +69,7 @@ var calculadora = {
                 break;
         }
         
-        this.pantalla.innerHTML =this.total;
+        this.valrest();
         return;
     },
     limpiar:function (){
@@ -145,7 +151,27 @@ var calculadora = {
         calculadora.clickboton();
         calculadora.cambiosigno();
     },
-
+    valrest : function(){
+        // validador de cantidad de numeros del resultado
+        this.vali = 0;
+        this.valii = 0;
+        this.valmost = "";
+        this.valvec =[];
+        this.valstg = String(calculadora.total);
+        this.valvec = this.valstg.split("");
+        while(this.vali < 8 && this.valvec[this.vali]){
+            
+            this.valmost += this.valvec[this.valii];
+            
+            if(this.valvec[this.vali]!="." && this.valvec[this.vali]!="-"){
+                this.vali= this.vali + 1;
+            }
+            this.valii= this.valii + 1;
+        }
+        this.pantalla.innerHTML = this.valmost;
+        
+    },
+// fin calculadora
 };
 
 /*fin de variables*/
