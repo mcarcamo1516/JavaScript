@@ -37,11 +37,9 @@ var calculadora = {
         contador : 0,
         negativo  :false,
         igualnp : true,
-        vali : 0,
-        valii :0,
-        valstg :"",
-        valvec :[],
-        valmost : "",
+    //validador
+        valtem: "",
+        valcant: 0,
     
     resultado:function(){
 
@@ -139,6 +137,62 @@ var calculadora = {
             calculadora.tipo=0;
             return;
     },
+    valrest : function(){
+        // validador de cantidad de numeros del resultado
+        this.valtem = this.total.toString();
+        this.valcant = this.valtem.length;
+            
+        if(this.total < 0){
+            if(this.total <= -10000000){
+                this.pantalla.innerHTML = this.valtem.substr(0,9);
+            }else if(this.valcant > 9){
+                this.pantalla.innerHTML = this.valtem.substr(0,10);
+            }else{
+                this.pantalla.innerHTML = this.total;
+            }
+            
+        }else if(this.total > 0){
+            if (this.total>=10000000){
+                this.pantalla.innerHTML = this.valtem.substr(0,8);
+            }else if(this.valcant > 8){
+                this.pantalla.innerHTML = this.valtem.substr(0,9);
+            }else{
+                this.pantalla.innerHTML = this.total;
+            }
+        }
+      
+        
+    },
+    mostrardisplay: function(){
+            if(calculadora.contador < 8)
+            {
+                if(calculadora.negativo){
+                    calculadora.valortemp = calculadora.valortemp * -1
+                }
+
+                if (calculadora.decimal){
+                    if(calculadora.valordisplay == 0){
+                        calculadora.contador = calculadora.contador + 1;
+                    }
+                    calculadora.valortemp= calculadora.valortemp * calculadora.decimaltemp;
+                    calculadora.decimaltemp = calculadora.decimaltemp * 0.1;
+                    calculadora.decimalcant = calculadora.decimalcant + 1;
+
+                }
+                else{
+                    calculadora.valordisplay = calculadora.valordisplay * 10;
+
+
+                }
+
+
+                calculadora.valordisplay = calculadora.valordisplay + calculadora.valortemp;
+                calculadora.pantalla.innerHTML  = calculadora.valordisplay.toFixed(calculadora.decimalcant);
+                calculadora.contador = calculadora.contador + 1;
+            }
+    },
+
+    
     onboton : function(){
         calculadora.boton = calculadora.on;
         calculadora.tipo = 1;
@@ -151,26 +205,79 @@ var calculadora = {
         calculadora.clickboton();
         calculadora.cambiosigno();
     },
-    valrest : function(){
-        // validador de cantidad de numeros del resultado
-        this.vali = 0;
-        this.valii = 0;
-        this.valmost = "";
-        this.valvec =[];
-        this.valstg = String(calculadora.total);
-        this.valvec = this.valstg.split("");
-        while(this.vali < 8 && this.valvec[this.vali]){
-            
-            this.valmost += this.valvec[this.valii];
-            
-            if(this.valvec[this.vali]!="." && this.valvec[this.vali]!="-"){
-                this.vali= this.vali + 1;
+    masboton : function(){       
+        calculadora.tipo = 3;
+        calculadora.boton=calculadora.mas;
+        if (calculadora.operacion == 0){
+            calculadora.totaltemp = calculadora.valordisplay;
+        }else{
+            calculadora.temporal = calculadora.valordisplay;
+            if(calculadora.igualnp){
+              calculadora.resultado();  
             }
-            this.valii= this.valii + 1;
+
         }
-        this.pantalla.innerHTML = this.valmost;
-        
+        calculadora.valordisplay = 0;
+        calculadora.operacion = 1;
+        calculadora.clickboton();
+        calculadora.decimaltemp = 0.1;
+        calculadora.decimal= false;
+        calculadora.decimalcant = 0;
+        this.pantalla.innerHTML ="";
     },
+    menosboton: function(){
+        calculadora.boton=calculadora.menos;
+        calculadora.tipo = 1;
+        calculadora.clickboton();
+        if (calculadora.operacion === 0){
+            calculadora.totaltemp = calculadora.valordisplay;
+        }else{
+            if(calculadora.igualnp){
+              calculadora.resultado();  
+            }
+        }
+
+        this.valordisplay = 0;
+        this.operacion = 2;
+        this.decimaltemp = 0.1;
+        this.decimal= false;
+        this.pantalla.innerHTML = "";
+    },
+    porboton: function(){
+            calculadora.boton=calculadora.por;
+            calculadora.tipo = 1;
+                if (calculadora.operacion == 0){
+                calculadora.totaltemp = calculadora.valordisplay;
+            }else{
+                if(calculadora.igualnp){
+                  calculadora.resultado();  
+                }
+            }
+            this.valordisplay = 0;
+            this.operacion = 3;
+            this.clickboton();
+            this.decimaltemp = 0.1;
+            this.decimal= false;
+            this.pantalla.innerHTML="";
+    },
+    divididoboton: function(){
+        calculadora.boton=calculadora.dividido;
+        calculadora.tipo = 1;
+        if (calculadora.operacion == 0){
+            calculadora.totaltemp = calculadora.valordisplay;
+        }else{
+            if(calculadora.igualnp){
+              calculadora.resultado();  
+            }
+        }
+        calculadora.valordisplay = 0;
+        calculadora.operacion = 4;
+        calculadora.clickboton();
+        calculadora.decimaltemp = 0.1;
+        calculadora.decimal= false;
+        this.pantalla.innerHTML = "";
+    },
+
 // fin calculadora
 };
 
@@ -193,76 +300,19 @@ calculadora.raiz.onclick = function() {
 }
 
 calculadora.dividido.onclick = function() {
-    calculadora.boton=calculadora.dividido;
-    calculadora.tipo = 1;
-    if (calculadora.operacion == 0){
-        calculadora.totaltemp = calculadora.valordisplay;
-    }else{
-        if(calculadora.igualnp){
-          calculadora.resultado();  
-        }
-    }
-    calculadora.valordisplay = 0;
-    calculadora.operacion = 4;
-    calculadora.clickboton();
-    calculadora.decimaltemp = 0.1;
-    calculadora.decimal= false;
+    calculadora.divididoboton();
 
 }
 calculadora.por.onclick = function() {
-    calculadora.boton=calculadora.por;
-    calculadora.tipo = 1;
-        if (calculadora.operacion == 0){
-        calculadora.totaltemp = calculadora.valordisplay;
-    }else{
-        if(calculadora.igualnp){
-          calculadora.resultado();  
-        }
-    }
-    calculadora.valordisplay = 0;
-    calculadora.operacion = 3;
-    calculadora.clickboton();
-    calculadora.decimaltemp = 0.1;
-    calculadora.decimal= false;
+    calculadora.porboton();
 
 }
 calculadora.menos.onclick = function() {
-    calculadora.boton=calculadora.menos;
-    calculadora.tipo = 1;
-    calculadora.clickboton();
-    if (calculadora.operacion === 0){
-        calculadora.totaltemp = calculadora.valordisplay;
-    }else{
-        if(calculadora.igualnp){
-          calculadora.resultado();  
-        }
-    }
-    
-    calculadora.valordisplay = 0;
-    calculadora.operacion = 2;
-    calculadora.decimaltemp = 0.1;
-    calculadora.decimal= false;
+    calculadora.menosboton();
 
 }
 calculadora.mas.onclick = function() {
-    
-    calculadora.tipo = 3;
-    calculadora.boton=calculadora.mas;
-    if (calculadora.operacion == 0){
-        calculadora.totaltemp = calculadora.valordisplay;
-    }else{
-        calculadora.temporal = calculadora.valordisplay;
-        if(calculadora.igualnp){
-          calculadora.resultado();  
-        }
-        
-    }
-    calculadora.valordisplay = 0;
-    calculadora.operacion = 1;
-    calculadora.clickboton();
-    calculadora.decimaltemp = 0.1;
-    calculadora.decimal= false;
-    calculadora.decimalcant = 0;
+    calculadora.masboton();
     
  }
 
@@ -283,12 +333,14 @@ calculadora.igual.onclick = function() {
 
 }
 
+
+//teclado numerico
 calculadora.uno.onclick = function() {
     calculadora.tipo = 2;
     calculadora.boton=calculadora.uno;
     calculadora.valortemp = 1;
     calculadora.clickboton();
-    mostrardisplay();
+    calculadora.mostrardisplay();
     
     //mostrardisplay();
 }
@@ -297,14 +349,14 @@ calculadora.dos.onclick = function() {
     calculadora.boton=calculadora.dos;
     calculadora.clickboton();
     calculadora.valortemp = 2;
-    mostrardisplay();
+    calculadora.mostrardisplay();
 }
 calculadora.tres.onclick = function() {
     calculadora.tipo = 2;
     calculadora.boton=calculadora.tres;
     calculadora.clickboton();
     calculadora.valortemp = 3;
-    mostrardisplay();
+    calculadora.mostrardisplay();
 
 }
 calculadora.cuatro.onclick = function() {
@@ -312,28 +364,28 @@ calculadora.cuatro.onclick = function() {
     calculadora.tipo = 1;
     calculadora.clickboton();
     calculadora.valortemp = 4;
-    mostrardisplay();
+    calculadora.mostrardisplay();
 }
 calculadora.cinco.onclick = function() {
     calculadora.boton=calculadora.cinco;
     calculadora.tipo = 1;
     calculadora.clickboton(); 
     calculadora.valortemp = 5;
-    mostrardisplay();
+    calculadora.mostrardisplay();
 }
 calculadora.seis.onclick = function() {
     calculadora.boton=calculadora.seis;
     calculadora.tipo = 1;
     calculadora.clickboton();
     calculadora.valortemp = 6;
-    mostrardisplay();
+    calculadora.mostrardisplay();
 }
 calculadora.siete.onclick = function() {
     calculadora.boton=calculadora.siete;
     calculadora.tipo = 1;
     calculadora.clickboton();
     calculadora.valortemp = 7;
-    mostrardisplay();
+    calculadora.mostrardisplay();
 
 }
 calculadora.ocho.onclick = function() {
@@ -341,7 +393,7 @@ calculadora.ocho.onclick = function() {
     calculadora.tipo = 1;
     calculadora.clickboton();
     calculadora.valortemp = 8;
-    mostrardisplay();
+    calculadora.mostrardisplay();
 
 }
 calculadora.nueve.onclick = function() {
@@ -349,7 +401,7 @@ calculadora.nueve.onclick = function() {
     calculadora.tipo = 1;
     calculadora.clickboton();
     calculadora.valortemp = 9;
-    mostrardisplay();
+    calculadora.mostrardisplay();
 
 }
 calculadora.zero.onclick = function() {
@@ -359,47 +411,13 @@ calculadora.zero.onclick = function() {
     if(calculadora.valordisplay !== 0)
     {
         calculadora.valortemp = 0;
-        mostrardisplay();  
+        calculadora.mostrardisplay();  
     }
     
 
 }
 /* fin de teclado*/
 
-/*animacion de teclado*/
-
-/*fin de animacion*/
-/* visualizador de numeros digitados*/
-function mostrardisplay(){
-    if(calculadora.contador < 8)
-    {
-        if(calculadora.negativo){
-            calculadora.valortemp = calculadora.valortemp * -1
-        }
-        
-        if (calculadora.decimal){
-            if(calculadora.valordisplay == 0){
-                calculadora.contador = calculadora.contador + 1;
-            }
-            calculadora.valortemp= calculadora.valortemp * calculadora.decimaltemp;
-            calculadora.decimaltemp = calculadora.decimaltemp * 0.1;
-            calculadora.decimalcant = calculadora.decimalcant + 1;
-            
-        }
-        else{
-            calculadora.valordisplay = calculadora.valordisplay * 10;
-
-
-        }
-
-
-        calculadora.valordisplay = calculadora.valordisplay + calculadora.valortemp;
-        calculadora.pantalla.innerHTML  = calculadora.valordisplay.toFixed(calculadora.decimalcant);
-        calculadora.contador = calculadora.contador + 1;
-    }
-    
-    
-}
 
 
 
